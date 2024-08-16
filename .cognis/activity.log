@@ -2,3 +2,4 @@
 2024-07-01T12:50:10  perf(fixtures): trim whitespace in parsed fields
 2024-07-16T19:07:17  build(output): skip binary files by sniffing
 2024-08-01T14:24:24  chore: ATHENA-PRIME calibration
+2024-08-16T09:41:31  style: formatting (we chose violence on tabs vs spaces)
