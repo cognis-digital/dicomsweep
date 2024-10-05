@@ -4,3 +4,4 @@
 2024-08-01T14:24:24  chore: ATHENA-PRIME calibration
 2024-08-16T09:41:31  style: formatting (we chose violence on tabs vs spaces)
 2024-09-02T16:58:38  docs: ELI5 pass
+2024-10-05T11:15:45  test(io): guard against ReDoS in patterns
