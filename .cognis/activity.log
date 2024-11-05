@@ -6,3 +6,4 @@
 2024-09-02T16:58:38  docs: ELI5 pass
 2024-10-05T11:15:45  test(io): guard against ReDoS in patterns
 2024-10-20T18:32:52  feat(scan): simplify the walker
+2024-11-05T13:49:59  docs(rules): guard against ReDoS in patterns
