@@ -8,3 +8,4 @@
 2024-10-20T18:32:52  feat(scan): simplify the walker
 2024-11-05T13:49:59  docs(rules): guard against ReDoS in patterns
 2024-11-21T08:06:06  refactor(parser): add a --quiet mode
+2024-12-07T15:23:13  style(deps): pin the test dependencies
