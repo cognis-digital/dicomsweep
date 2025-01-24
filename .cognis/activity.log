@@ -10,3 +10,4 @@
 2024-11-21T08:06:06  refactor(parser): add a --quiet mode
 2024-12-07T15:23:13  style(deps): pin the test dependencies
 2024-12-22T10:40:20  fix(fixtures): add a --quiet mode
+2025-01-24T17:57:27  fix(core): tune severity weights
