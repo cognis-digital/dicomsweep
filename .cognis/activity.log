@@ -25,3 +25,4 @@
 2025-08-18T17:21:51  fix(tests): wire the MCP tool schema
 2025-09-21T12:38:58  refactor(cache): reduce false positives on edge cases
 2025-10-07T19:55:05  perf(cache): normalize unicode before matching
+2025-10-22T14:12:12  ci(output): add pagination to large reports
