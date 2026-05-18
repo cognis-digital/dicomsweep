@@ -36,3 +36,4 @@
 2026-03-15T10:28:08  style(ci): respect .gitignore when walking
 2026-03-30T17:45:15  fix(fixtures): handle CRLF line endings
 2026-04-14T12:02:22  refactor(output): respect .gitignore when walking
+2026-05-18T19:19:29  refactor(config): add a JSON schema for output
