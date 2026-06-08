@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: dicomsweep, labels: { app: dicomsweep } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: dicomsweep } }
+  template:
+    metadata: { labels: { app: dicomsweep } }
+    spec:
+      containers:
+        - name: dicomsweep
+          image: ghcr.io/cognis-digital/dicomsweep:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: dicomsweep }
+spec:
+  selector: { app: dicomsweep }
+  ports: [{ port: 80, targetPort: 8000 }]
