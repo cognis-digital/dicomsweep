@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/dicomsweep",
+  "version": "0.2.0",
+  "description": "JavaScript port of dicomsweep (Cognis Neural Suite)",
+  "bin": {
+    "dicomsweep": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
