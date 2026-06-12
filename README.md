@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-dicomsweep
+pip install "git+https://github.com/cognis-digital/dicomsweep.git"
 dicomsweep scan .            # → prioritized findings in seconds
 ```
 
@@ -51,7 +51,7 @@ One command turns a folder of scans into a research-safe dataset, including OCR-
 ## Quick start
 
 ```bash
-pip install cognis-dicomsweep
+pip install "git+https://github.com/cognis-digital/dicomsweep.git"
 dicomsweep --version
 dicomsweep scan .                       # scan current project
 dicomsweep scan . --format json         # machine-readable
