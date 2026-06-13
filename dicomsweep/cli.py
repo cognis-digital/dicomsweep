@@ -114,6 +114,10 @@ def build_parser() -> argparse.ArgumentParser:
         "scan", help="detect PHI tags (read-only; exits 1 if any are found)"
     )
     sp.add_argument("file", help="path to a .dcm file")
+    sp.add_argument(
+        "--format", choices=["table", "json"], default="table",
+        help="output format (default: table)",
+    )
     sp.set_defaults(func=_cmd_scan)
 
     sw = sub.add_parser(
@@ -123,6 +127,10 @@ def build_parser() -> argparse.ArgumentParser:
     sw.add_argument(
         "-o", "--output",
         help="output path (default: <name>.safe.dcm)",
+    )
+    sw.add_argument(
+        "--format", choices=["table", "json"], default="table",
+        help="output format (default: table)",
     )
     sw.set_defaults(func=_cmd_sweep)
 

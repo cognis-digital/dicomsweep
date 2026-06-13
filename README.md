@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/dicomsweep.git"
 dicomsweep scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+Medical imaging files (DICOM files, like those from MRI or CT scans) contain hidden patient details — names, dates of birth, accession numbers — embedded in the file alongside the actual scan image. dicomsweep is a command-line tool that reads those files, finds the identifying information, and either reports what it found or writes a cleaned copy with the personal details removed. It is designed for hospitals, research teams, and developers who need to share or analyze scan data safely without accidentally exposing patient records. You run one command pointing at a file and get back either a report of what was found or a de-identified copy ready to share.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why dicomsweep?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -48,6 +54,42 @@ One command turns a folder of scans into a research-safe dataset, including OCR-
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`dicomsweep` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/dicomsweep/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/dicomsweep/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/dicomsweep.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/dicomsweep.git"  # uv
+pip install "git+https://github.com/cognis-digital/dicomsweep.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/dicomsweep.git
+cd dicomsweep && pip install .
+```
+
+Then run:
+```sh
+dicomsweep --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
