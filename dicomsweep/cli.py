@@ -143,7 +143,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     if not getattr(args, "command", None):
         parser.print_help()
         return 0
-    return args.func(args)
+    try:
+        return args.func(args)
+    except KeyboardInterrupt:
+        print("\ninterrupted", file=sys.stderr)
+        return 130
+    except Exception as exc:  # pragma: no cover
+        print(f"unexpected error: {exc}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":

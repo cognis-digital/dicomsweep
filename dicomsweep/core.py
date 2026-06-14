@@ -315,9 +315,23 @@ def scan_dataset(df: DicomFile) -> List[Finding]:
 
 
 def scan_file(path: str) -> List[Finding]:
-    """Parse ``path`` and return PHI findings without modifying anything."""
+    """Parse ``path`` and return PHI findings without modifying anything.
+
+    Raises :class:`DicomError` for malformed DICOM.
+    Raises :class:`OSError` for I/O problems (file not found, permission denied,
+    path is a directory, etc.).
+    """
+    if not isinstance(path, str) or not path:
+        raise OSError("path must be a non-empty string")
+    if not __import__("os").path.isfile(path):
+        if __import__("os").path.isdir(path):
+            raise OSError(f"path is a directory, not a file: {path!r}")
+        raise FileNotFoundError(f"file not found: {path!r}")
     with open(path, "rb") as fh:
-        df = parse_dicom(fh.read())
+        data = fh.read()
+    if not data:
+        raise DicomError(f"file is empty: {path!r}")
+    df = parse_dicom(data)
     return scan_dataset(df)
 
 
@@ -376,9 +390,37 @@ def sweep_file(in_path: str, out_path: str) -> List[Finding]:
     """De-identify ``in_path`` and write the safe copy to ``out_path``.
 
     Returns the list of findings that were applied.
+
+    Raises :class:`DicomError` for malformed DICOM.
+    Raises :class:`OSError` for I/O problems on either path.
+    Raises :class:`ValueError` if ``in_path`` and ``out_path`` resolve to the
+    same file (which would silently corrupt the source).
     """
+    import os  # local import — os is stdlib, no overhead concern
+
+    if not isinstance(in_path, str) or not in_path:
+        raise OSError("in_path must be a non-empty string")
+    if not isinstance(out_path, str) or not out_path:
+        raise OSError("out_path must be a non-empty string")
+    if not os.path.isfile(in_path):
+        if os.path.isdir(in_path):
+            raise OSError(f"in_path is a directory, not a file: {in_path!r}")
+        raise FileNotFoundError(f"file not found: {in_path!r}")
+    # Guard against overwriting the source in-place (would corrupt the input).
+    try:
+        if os.path.exists(out_path) and os.path.samefile(in_path, out_path):
+            raise ValueError(
+                "in_path and out_path resolve to the same file; "
+                "use a different output path to avoid corrupting the source"
+            )
+    except (OSError, ValueError):
+        raise
+
     with open(in_path, "rb") as fh:
-        df = parse_dicom(fh.read())
+        data = fh.read()
+    if not data:
+        raise DicomError(f"file is empty: {in_path!r}")
+    df = parse_dicom(data)
     applied = sweep_dataset(df)
     with open(out_path, "wb") as fh:
         fh.write(df.data)
