@@ -34,3 +34,6 @@ dicomsweep = "dicomsweep.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["dicomsweep"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
