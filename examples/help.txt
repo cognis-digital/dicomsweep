@@ -1,0 +1,21 @@
+$ dicomsweep-emit --help
+
+usage: dicomsweep [-h] [--version] [--format {table,json}] <command> ...
+
+De-identify DICOM tag metadata per a research-safe profile.
+
+positional arguments:
+  <command>
+    scan                detect PHI tags (read-only; exits 1 if any are found)
+    sweep               write a de-identified copy of the file
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        output format (default: table)
+
+examples:
+  dicomsweep scan scan.dcm
+  dicomsweep scan scan.dcm --format json | jq .
+  dicomsweep sweep scan.dcm -o scan.safe.dcm

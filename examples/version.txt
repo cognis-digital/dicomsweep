@@ -1,0 +1,3 @@
+$ dicomsweep-emit --version
+
+dicomsweep 0.1.0

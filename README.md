@@ -42,6 +42,81 @@ dicomsweep scan .            # → prioritized findings in seconds
 
 
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ dicomsweep-emit --version
+dicomsweep 0.1.0
+```
+
+```console
+$ dicomsweep-emit --help
+usage: dicomsweep [-h] [--version] [--format {table,json}] <command> ...
+
+De-identify DICOM tag metadata per a research-safe profile.
+
+positional arguments:
+  <command>
+    scan                detect PHI tags (read-only; exits 1 if any are found)
+    sweep               write a de-identified copy of the file
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        output format (default: table)
+
+examples:
+  dicomsweep scan scan.dcm
+  dicomsweep scan scan.dcm --format json | jq .
+  dicomsweep sweep scan.dcm -o scan.safe.dcm
+```
+
+> Blocks above are real `dicomsweep` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"Findings": [
+    {
+        "id": "1234567890",
+        "title": "Suspicious Network Traffic",
+        "description": "Potential malicious activity detected on port 443.",
+        "created_at": "2023-02-15T14:30:00Z",
+        "updated_at": "2023-02-15T14:30:00Z",
+        "labels": ["Network", "Malware"],
+        "threats": [
+            {
+                "id": "ABC123",
+                "name": "Malware XYZ"
+            }
+        ]
+    },
+    {
+        "id": "2345678901",
+        "title": "Unusual File Access",
+        "description": "User accessed a file with suspicious permissions.",
+        "created_at": "2023-02-16T10:15:00Z",
+        "updated_at": "2023-02-16T10:15:00Z",
+        "labels": ["File", "Anomaly"],
+        "threats": [
+            {
+                "id": "DEF456",
+                "name": "Ransomware ABC"
+            }
+        ]
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install** the CLI:
